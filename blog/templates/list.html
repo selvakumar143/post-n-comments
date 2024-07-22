@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %} My Model List {% endblock %}
+{% block content %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Author </th>
+            <th>Status </th>
+            <th>Action </th>
+        </tr>
+    </thead>
+    <tbody>
+      
+        {% for object in object_list %}
+        <tr>
+            <td>{{ object.id }}</td>
+            <td>{{ object.title }}</td>
+            <td>{{ object.author }}</td>
+            <td>{{ object.status }}</td>
+            <td>
+                <a href="{% url 'detail' slug=object.slug %}">Open</a>
+               
+            </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<p>Current Page: {{ page_obj.number }}</p>
+<p>Count Page: {{ page_obj.object_list.count }}</p>
+
+{% if page_obj.has_previous %}
+  <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+{% endif %}
+
+{% if page_obj.has_next %}
+  <a href="?page={{ page_obj.next_page_number }}">Next</a>
+{% endif %}
+
+{% endblock %}

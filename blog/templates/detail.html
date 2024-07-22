@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %} My Model List {% endblock %}
+{% block content %}
+    <h1>{{ object.title }}</h1>
+    <p>{{ object.short_description }}</p>
+    <p>{{ object.author }}</p>
+    <p>{{ object.status }}</p>
+    <img src="{{ MEDIA_URL }}{{ object.media.url }}" alt="Girl in a jacket" > 
+    <table class="table table-striped mt-5">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Content </th>
+                <th>Author </th>
+            </tr>
+        </thead>
+        <tbody>
+          
+            {% for object in comments %}
+            <tr>
+                <td>{{ object.id }}</td>
+                <td>{{ object.title }}</td>
+                <td>{{ object.comments }}</td>
+                <td>{{ object.user_id }}</td>
+                
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
